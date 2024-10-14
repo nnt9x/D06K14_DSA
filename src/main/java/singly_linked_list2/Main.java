@@ -36,5 +36,28 @@ public class Main {
         linkedList.display();
         // Kich thuoc
         System.out.println("Kich thuoc: " + linkedList.size());
+
+        // Xoa, sau do in kich thuoc
+        linkedList.deleteAtPosition(3);
+        linkedList.display();
+        // in ra kich thuoc
+        System.out.println("Kich thuoc: " + linkedList.size());
+
+        // Xoa, sau do in kich thuoc
+        linkedList.deleteAtPosition(0);
+        linkedList.display();
+        // in ra kich thuoc
+        System.out.println("Kich thuoc: " + linkedList.size());
+
+        //
+        linkedList.deleteAtPosition(2);
+        linkedList.display();
+        // in ra kich thuoc
+        System.out.println("Kich thuoc: " + linkedList.size());
+
+        linkedList.deleteAtPosition(10);
+        linkedList.display();
+        // in ra kich thuoc
+        System.out.println("Kich thuoc: " + linkedList.size());
     }
 }

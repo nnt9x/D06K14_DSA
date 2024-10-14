@@ -78,7 +78,6 @@ public class SinglyLinkedList<T> {
         }
     }
 
-
     // Xoa vi tri dau danh sach
     public void deleteAtBegin() {
         if (head == null) {
@@ -113,6 +112,34 @@ public class SinglyLinkedList<T> {
             // Cắt liên kết: gần cuói -> cuối
             node.setNext(null);
             size--;
+        }
+    }
+
+    public void deleteAtPosition(int position){
+        if(position == 0){
+            deleteAtBegin();
+        } else if (position == size -1) {
+            deleteAtEnd();
+        }
+        else if(position < 0 || position >= size){
+            throw new RuntimeException("Index out of range");
+        }
+        else{
+            // Xoa vi tri giua
+            // position -1, position, position + 1
+            Node prevNode = head;
+            for (int i = 0; i < position - 1; i++) {
+                prevNode = prevNode.getNext();
+            }
+            // Current
+            Node currNode = prevNode.getNext();
+            // Position + 1
+            Node nextNode = currNode.getNext();
+            // lien ket: position -1 ve position + 1
+            prevNode.setNext(nextNode);
+            // xoa lien ket: position ve position + 1
+            currNode.setNext(null);
+            size --;
         }
     }
 
