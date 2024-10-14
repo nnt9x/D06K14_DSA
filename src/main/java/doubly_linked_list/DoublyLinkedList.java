@@ -81,17 +81,86 @@ public class DoublyLinkedList<T> implements LinkedListADT<T> {
 
     @Override
     public T deleteAtBegin() {
-        return null;
+        if (size == 0) {
+            throw new RuntimeException("Linkedlist is empty");
+        } else if (size == 1) {
+            T data = head.getData();
+            head = null;
+            size--;
+            return data;
+        } else {
+            // co nhieu hon 1 phan tu
+            T data = head.getData();
+            // Lay ra newHead
+            Node<T> newHead = head.getNext();
+            // Xoa lien ket head =>newHead
+            head.setNext(null);
+            newHead.setPrev(null);
+            // Gan head => newHead
+            head = newHead;
+            // Giam size
+            size--;
+            return data;
+        }
     }
 
     @Override
     public T deleteAtEnd() {
-        return null;
+        if (size == 0) {
+            throw new RuntimeException("Linkedlist is empty");
+        } else if (size == 1) {
+            return deleteAtBegin();
+        } else {
+            // Co nhieu hon 1 phan tu:
+            // can tim dc cai gan cuoi.
+            Node<T> preNode = head; // gan cuoi
+            for (int i = 0; i < size - 2; i++) {
+                preNode = preNode.getNext();
+            }
+            Node<T> lastNode = preNode.getNext(); // cuoi
+            T data = lastNode.getData();
+            // Xoa lien ket
+            preNode.setNext(null);
+            lastNode.setPrev(null);
+
+            // Giam size
+            size--;
+            return data;
+        }
     }
 
     @Override
     public T deleteAtPosition(int position) {
-        return null;
+        if (position == 0) {
+            return deleteAtBegin();
+        } else if (position == size - 1) {
+            return deleteAtEnd();
+        } else if (position < 0 || position >= size) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            // Xoa giua: position -1 ; position ; position + 1
+            // position - 1
+            Node<T> preNode = head; // position - 1
+            for (int i = 0; i < position - 1; i++) {
+                preNode = preNode.getNext();
+            }
+            Node<T> currNode = preNode.getNext(); // position: node can xoa
+            T data = currNode.getData();
+            // position + 1
+            Node<T> nextNode = currNode.getNext();
+            // Xoa lien ket
+            preNode.setNext(null);
+            currNode.setPrev(null);
+
+            currNode.setNext(null);
+            nextNode.setPrev(null);
+            // Tao lien ket
+            preNode.setNext(nextNode);
+            nextNode.setPrev(preNode);
+            // Giam size
+            size--;
+            return data;
+        }
     }
 
     @Override
